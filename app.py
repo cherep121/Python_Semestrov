@@ -69,17 +69,15 @@ INTERESTING_FACTS_DB = {
     "spain": "🇪🇸 Испания — вторая по величине страна в Европе."
 }
 
-
+# Переводит русское название страны на английский
 def get_country_name_english(query):
-    """Переводит русское название страны на английский"""
     query_lower = query.lower().strip()
     if query_lower in RUSSIAN_TO_ENGLISH:
         return RUSSIAN_TO_ENGLISH[query_lower]
     return query
 
-
+# Возвращает интересный факт о стране
 def get_interesting_fact(country_name):
-    """Возвращает интересный факт о стране"""
     country_lower = country_name.lower()
     for key, fact in INTERESTING_FACTS_DB.items():
         if key in country_lower or country_lower in key:
@@ -89,11 +87,9 @@ def get_interesting_fact(country_name):
         "и уникальными традициями!"
     )
 
-
+#Возвращает описание страны
 def get_country_description(country_name):
-    """Возвращает описание страны"""
     return get_interesting_fact(country_name)
-
 
 # Функции логирования
 def get_user_log_file(username):
@@ -118,7 +114,6 @@ def log_action(username, action, details):
 
 # Функции получения данных через API
 def get_country_info_by_api(country_name):
-    """Получает данные о стране через REST Countries API"""
     country_name_eng = get_country_name_english(country_name)
 
     urls = [
@@ -163,9 +158,8 @@ def get_country_info_by_api(country_name):
 
     return None
 
-
+# Получает случайную страну через API
 def get_random_country():
-    """Получает случайную страну через API"""
     try:
         url = "https://restcountries.com/v3.1/all"
         params = {
@@ -243,9 +237,8 @@ def get_random_country():
         print(f"Random country error: {e}")
         return None
 
-
+# Ищет страну по названию столицы
 def search_by_capital(capital_name):
-    """Ищет страну по названию столицы"""
     try:
         url = f"https://restcountries.com/v3.1/capital/{capital_name}"
         print(f"Поиск по столице: {url}")
